@@ -19,8 +19,8 @@ $ cat src/main/resources/application.properties
 
 # Alfresco Server
 content.service.url=http://localhost:8080
-content.service.security.basicAuth.username=
-content.service.security.basicAuth.password=
+content.service.security.basicAuth.username=admin
+content.service.security.basicAuth.password=admin
 
 content.service.path=/alfresco/api/-default-/public/alfresco/versions/1
 search.service.path=/alfresco/api/-default-/public/search/versions/1
