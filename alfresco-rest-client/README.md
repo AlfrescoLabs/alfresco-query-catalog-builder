@@ -1,9 +1,6 @@
 # Alfresco REST Client
 
-This project includes an Alfresco Rest Client performing following operations:
-
-* `create-site` populates several sites using several users with documents
-* `search` perform sample queries in a loop
+This project includes an Alfresco Rest Client to get information from Audit Module.
 
 ## Compiling the project
 
@@ -28,15 +25,10 @@ content.service.security.basicAuth.password=
 content.service.path=/alfresco/api/-default-/public/alfresco/versions/1
 search.service.path=/alfresco/api/-default-/public/search/versions/1
 
-# Action (create-site, search)
-action.name=search
-
-# JSON Path produced with "sizing-guide-data-generator" project
-action.site.json.path=/Users/aborroy/Desktop/git/sizing-guide-data-generator/generated/json/docx50_pptx0_pdf50_jpg0_txt0_metadataId1/0
-action.site.sites=5
-action.site.users=10
-
-action.search.count=100
+# Audit parameters
+audit.app.id=search
+audit.api.max.items=100
+audit.query.similarity.threshold=0.95
 ```
 
 Modifying these values requires to re-compile the project.
