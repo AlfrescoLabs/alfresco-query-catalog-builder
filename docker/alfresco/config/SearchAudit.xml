@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Audit xmlns="http://www.alfresco.org/repo/audit/model/3.2"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.alfresco.org/repo/audit/model/3.2 alfresco-audit-3.2.xsd">
+
+    <DataExtractors>
+       <DataExtractor name="simpleValue" registeredName="auditModel.extractor.simpleValue"/>
+       <DataExtractor name="nullValue" registeredName="auditModel.extractor.nullValue"/>
+    </DataExtractors>
+
+    <PathMappings>
+        <PathMap source="/alfresco-api/post/SearchService/query/args" target="/search/QUERY" />
+        <PathMap source="/alfresco-api/post/SearchService/selectNodes/args" target="/search/SELECT" />
+    </PathMappings>
+
+    <Application name="search" key="search">
+        <AuditPath key="QUERY">
+            <AuditPath key="searchParameters">
+              <RecordValue key="value" dataExtractor="simpleValue" />
+            </AuditPath>
+        </AuditPath>
+        <AuditPath key="SELECT">
+              <AuditPath key="contextNodeRef">
+                  <RecordValue key="value" dataExtractor="simpleValue" />
+              </AuditPath>
+              <AuditPath key="parameters">
+                  <RecordValue key="value" dataExtractor="simpleValue" />
+              </AuditPath>
+              <AuditPath key="language">
+                  <RecordValue key="value" dataExtractor="simpleValue" />
+              </AuditPath>
+              <AuditPath key="xpath">
+                  <RecordValue key="value" dataExtractor="simpleValue" />
+              </AuditPath>
+              <AuditPath key="followAllParentLinks">
+                <RecordValue key="value" dataExtractor="simpleValue" />
+            </AuditPath>
+        </AuditPath>
+    </Application>
+
+</Audit>
