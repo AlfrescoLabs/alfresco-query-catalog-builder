@@ -1,10 +1,11 @@
 package org.alfresco.rest.client;
 
-import info.debatty.java.stringsimilarity.JaroWinkler;
 import org.alfresco.core.handler.AuditApi;
 import org.alfresco.core.model.AuditEntry;
 import org.alfresco.core.model.AuditEntryEntry;
 import org.alfresco.rest.client.bean.SearchQuery;
+import org.apache.commons.text.similarity.JaccardSimilarity;
+import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,12 +86,14 @@ public class App implements CommandLineRunner {
             LOG.info("-----------------");
         });
 
+        LOG.info(queryCatalog.values().stream().mapToInt(Collection::size).sum() + " filtered queries");
+
     }
 
     private boolean isNewQuery(Set<String> queries, String candidateQuery) {
-        JaroWinkler jw = new JaroWinkler();
+        JaccardSimilarity jw = new JaccardSimilarity();
         for (String query : queries) {
-            if (jw.similarity(candidateQuery, query) > SIMILARITY_THRESHOLD) {
+            if (jw.apply(candidateQuery, query) > SIMILARITY_THRESHOLD) {
                 LOG.debug("'{}' candidate query is similar to '{}' and has been discarded", candidateQuery, query);
                 return false;
             }
